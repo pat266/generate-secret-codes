@@ -11,13 +11,12 @@ def output_code(path, length, num):
         raise Exception('The input path is not valid')
 
     combination = string.ascii_uppercase + string.digits # the code will only contain upper case character and number
-    setOfValues = set() # a set avoids duplication whenb adding to it
+    setOfValues = set() # a set avoids duplication when adding to it
 
     if Path(path + 'code.csv').is_file(): # if the output folder already has the code.csv file
         df = pd.read_csv(path + 'code.csv', header=None) # read it to the DataFrame variable
         setOfValues = set(df[0].values.tolist()) # transform the values from DataFrame to the set variable
-        # Remove the current csv file
-        os.remove(path + 'code.csv')
+        os.remove(path + 'code.csv') # Remove the current csv file
 
     while len(setOfValues) < num: # continue adding to the set until the requirement is reached
         # use the secrets library to choose 'length' number of letter/digit from the combination
